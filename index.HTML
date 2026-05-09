@@ -1,0 +1,994 @@
+OCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Right Choice Double Glazing Ltd | Luxury London Glazing</title>
+    
+    <!-- External CSS & Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlack: '#0d0d0d',
+                        brandGold: '#d4af37',
+                        brandGoldLight: '#f3d573',
+                        brandDarkGray: '#1a1a1a',
+                        brandLightBg: '#f8f9fa'
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg-main: #f8f9fa;
+            --text-main: #0d0d0d;
+            --text-muted: #4b5563;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(212, 175, 55, 0.3);
+            --card-bg: #ffffff;
+        }
+
+        .dark {
+            --bg-main: #0d0d0d;
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --glass-bg: rgba(13, 13, 13, 0.85);
+            --glass-border: rgba(212, 175, 55, 0.15);
+            --card-bg: #1a1a1a;
+        }
+
+        body { 
+            background-color: var(--bg-main); 
+            color: var(--text-main); 
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden; 
+        }
+
+        /* Glassmorphism Classes */
+        .glass-nav { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border); 
+        }
+        
+        .glass-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--glass-border); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+        .dark .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+        }
+        .glass-card:hover { 
+            border-color: #d4af37; 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15); 
+        }
+
+        .text-gradient { 
+            background: linear-gradient(to right, #d4af37, #f3d573, #aa8c2c); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: var(--bg-main); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
+        
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 3px; background: #d4af37;
+            width: 0%; z-index: 1000; transition: width 0.1s;
+        }
+
+        #three-canvas { width: 100%; height: 500px; cursor: grab; }
+        #three-canvas:active { cursor: grabbing; }
+        
+        .loader-active { overflow: hidden; }
+        .swiper-pagination-bullet { background: #d4af37 !important; }
+        
+        .gallery-item { break-inside: avoid; margin-bottom: 1.5rem; }
+        .before-after-card .after-img { clip-path: inset(0 100% 0 0); transition: clip-path 0.5s ease; }
+        .before-after-card:hover .after-img { clip-path: inset(0 0 0 0); }
+
+        /* Accordion */
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-item.active .faq-answer { max-height: 200px; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+    </style>
+</head>
+<body class="dark font-body custom-scrollbar loader-active">
+
+    <div id="progress-bar"></div>
+
+    <!-- Premium Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 z-[100] bg-brandBlack flex flex-col items-center justify-center">
+        <div class="relative w-24 h-24 mb-6">
+            <div class="absolute inset-0 border-4 border-brandGold/20 rounded-full"></div>
+            <div class="absolute inset-0 border-4 border-brandGold border-t-transparent rounded-full animate-spin"></div>
+        </div>
+        <h2 class="font-heading text-brandGold tracking-[0.5em] uppercase text-sm animate-pulse">Loading Excellence</h2>
+    </div>
+
+    <!-- Glassmorphism Sticky Nav -->
+    <nav class="glass-nav fixed top-0 w-full z-50 px-4 py-3 sm:px-6 sm:py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 border-2 border-brandGold flex items-center justify-center font-heading font-black text-brandGold rounded-sm">RC</div>
+                <div class="leading-none hidden sm:block">
+                    <span class="block font-heading font-black text-lg tracking-tighter">RIGHT CHOICE</span>
+                    <span class="block text-[8px] text-brandGold tracking-widest uppercase">Double Glazing Ltd</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex gap-5 items-center text-[10px] xl:text-[11px] font-bold uppercase tracking-widest">
+                <a href="#home" class="hover:text-brandGold transition-colors">Home</a>
+                <a href="#about" class="hover:text-brandGold transition-colors">About</a>
+                <a href="#services" class="hover:text-brandGold transition-colors">Services</a>
+                <a href="#gallery" class="hover:text-brandGold transition-colors">Gallery</a>
+                <a href="#offers" class="text-brandGold">Offers</a>
+                <a href="#reviews" class="hover:text-brandGold transition-colors">Reviews</a>
+                <a href="#contact" class="hover:text-brandGold transition-colors">Contact</a>
+                <button id="theme-toggle-btn" class="text-xl text-brandGold mx-2 hover:scale-110 transition-transform"><i class="fas fa-sun"></i></button>
+                <a href="#booking" class="bg-brandGold text-brandBlack px-6 py-2.5 rounded-full transform hover:scale-105 transition-all">Book Survey</a>
+            </div>
+            
+            <div class="lg:hidden flex items-center gap-4">
+                <button id="theme-toggle-mobile" class="text-brandGold text-xl"><i class="fas fa-sun"></i></button>
+                <button class="text-brandGold text-2xl" id="nav-toggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brandBlack/95 backdrop-blur-xl z-[90] translate-x-full transition-transform duration-500 flex flex-col items-center justify-center gap-5 overflow-y-auto py-20">
+        <a href="#home" class="mobile-link text-xl font-heading font-black uppercase text-white hover:text-brandGold">Home</a>
+        <a href="#about" class="mobile-link text-xl font-heading font-black uppercase text-white hover:text-brandGold">About</a>
+        <a href="#services" class="mobile-link text-xl font-heading font-black uppercase text-white hover:text-brandGold">Services</a>
+        <a href="#gallery" class="mobile-link text-xl font-heading font-black uppercase text-white hover:text-brandGold">Gallery</a>
+        <a href="#offers" class="mobile-link text-xl font-heading font-black uppercase text-brandGold">Offers</a>
+        <a href="#reviews" class="mobile-link text-xl font-heading font-black uppercase text-white hover:text-brandGold">Reviews</a>
+        <a href="#booking" class="mobile-link text-xl font-heading font-black uppercase text-white hover:text-brandGold">Booking</a>
+        <a href="#contact" class="mobile-link text-xl font-heading font-black uppercase text-white hover:text-brandGold">Contact</a>
+        <button id="close-menu" class="absolute top-6 right-6 text-brandGold text-4xl">&times;</button>
+    </div>
+
+    <!-- 1. HOME PAGE -->
+    <section id="home" class="min-h-screen pt-32 pb-20 px-6 relative flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none" style="background-image: radial-gradient(#d4af37 1px, transparent 1px); background-size: 50px 50px;"></div>
+        
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 items-center gap-12 lg:gap-16 relative z-10 w-full">
+            <div class="reveal-left order-2 lg:order-1 text-center lg:text-left">
+                <div class="inline-flex items-center gap-3 px-4 py-2 bg-brandGold/10 border border-brandGold/20 rounded-full mb-6 mx-auto lg:mx-0">
+                    <span class="w-2 h-2 bg-brandGold rounded-full animate-ping"></span>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brandGold">London's Premium Glaziers</span>
+                </div>
+                <h1 class="font-heading text-4xl sm:text-6xl lg:text-7xl font-black leading-[1.1] mb-6">
+                    LUXURY <br><span class="text-gradient">DOUBLE GLAZING</span> <br>SOLUTIONS
+                </h1>
+                <p class="text-[var(--text-muted)] text-base sm:text-lg mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light">
+                    Professional Installation • Repair • Replacement. Elevating London architecture with high-performance uPVC windows and bespoke composite doors.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#booking" class="px-8 py-4 bg-brandGold text-brandBlack font-black rounded-full hover:bg-white transition-all transform hover:-translate-y-1 shadow-lg shadow-brandGold/20 text-center uppercase tracking-wider text-sm">Get Free Quote</a>
+                    <a href="tel:07855058352" class="px-8 py-4 border border-brandGold/40 text-brandGold font-black rounded-full hover:bg-brandGold/10 transition-all text-center uppercase tracking-wider text-sm"><i class="fas fa-phone mr-2"></i> Call Now</a>
+                </div>
+            </div>
+            
+            <div class="relative reveal-right h-[400px] lg:h-[600px] flex items-center justify-center order-1 lg:order-2 w-full">
+                <!-- Interactive 3D Canvas -->
+                <div id="three-canvas" class="w-full h-full"></div>
+                <div class="absolute bottom-4 lg:bottom-10 left-1/2 -translate-x-1/2 text-center pointer-events-none bg-brandBlack/50 px-4 py-2 rounded-full backdrop-blur-md">
+                    <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-brandGold animate-pulse"><i class="fas fa-hand-pointer mr-2"></i>Drag to inspect 3D model</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animated Statistics Section -->
+    <div class="py-12 border-y border-brandGold/10 bg-[var(--card-bg)] relative z-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 px-6">
+            <div class="text-center">
+                <div class="text-4xl sm:text-5xl font-heading font-black text-brandGold mb-2 count" data-val="15">0</div>
+                <div class="text-[9px] sm:text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold">Years Experience</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl sm:text-5xl font-heading font-black text-brandGold mb-2 count" data-val="2500">0</div>
+                <div class="text-[9px] sm:text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold">Happy Clients</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl sm:text-5xl font-heading font-black text-brandGold mb-2 count" data-val="3000">0</div>
+                <div class="text-[9px] sm:text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold">Projects Done</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl sm:text-5xl font-heading font-black text-brandGold mb-2">100%</div>
+                <div class="text-[9px] sm:text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold">Service Guarantee</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. ABOUT PAGE -->
+    <section id="about" class="py-24 lg:py-32 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+                <div class="reveal-left order-2 lg:order-1">
+                    <div class="relative group">
+                        <div class="absolute -inset-4 bg-brandGold/10 blur-2xl rounded-3xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                        <img src="https://placehold.co/800x1000/1a1a1a/d4af37?text=Premium+Installations" alt="Luxury Home" class="rounded-[2rem] w-full h-auto object-cover border border-brandGold/20 relative z-10 shadow-2xl">
+                        
+                        <!-- Owner Card -->
+                        <div class="absolute -bottom-10 -right-4 lg:-right-10 glass-card p-6 lg:p-8 rounded-[2rem] z-20 w-64">
+                            <h4 class="font-heading font-black text-brandGold text-2xl">BUNTY</h4>
+                            <p class="text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-4">Founder & Lead Installer</p>
+                            <p class="text-sm font-light italic leading-relaxed text-[var(--text-main)]">"Redefining thermal and aesthetic envelopes across London."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-right order-1 lg:order-2">
+                    <span class="text-brandGold font-bold uppercase tracking-[0.4em] text-xs mb-4 block">Company Vision</span>
+                    <h2 class="font-heading text-4xl lg:text-5xl font-black mb-8 leading-tight">PIONEERING <br><span class="text-gradient">LONDON'S</span> ARCHITECTURE</h2>
+                    <p class="text-[var(--text-muted)] mb-6 leading-relaxed font-light">Based in Romford, Right Choice Double Glazing Ltd has spent 15 years perfecting the intersection of security, thermal efficiency, and high-end design. We serve London, Essex, and Kent with an unwavering commitment to quality.</p>
+                    <p class="text-[var(--text-muted)] mb-8 leading-relaxed font-light">Our mission is to provide bespoke architectural glass and premium uPVC solutions that elevate the aesthetic and functional value of every property we touch.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-5 p-5 glass-card rounded-2xl">
+                            <div class="w-12 h-12 bg-brandGold/10 text-brandGold rounded-xl flex items-center justify-center flex-shrink-0 text-xl"><i class="fas fa-certificate"></i></div>
+                            <div>
+                                <h5 class="font-bold text-[var(--text-main)]">FENSA Registered</h5>
+                                <p class="text-xs text-[var(--text-muted)] mt-1">Full compliance with UK building standards.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-5 p-5 glass-card rounded-2xl">
+                            <div class="w-12 h-12 bg-bg-brandGold/10 text-brandGold rounded-xl flex items-center justify-center flex-shrink-0 text-xl"><i class="fas fa-shield-alt"></i></div>
+                            <div>
+                                <h5 class="font-bold text-[var(--text-main)]">10-Year Guarantee</h5>
+                                <p class="text-xs text-[var(--text-muted)] mt-1">Peace of mind backed by structural cover.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SERVICES PAGE -->
+    <section id="services" class="py-24 lg:py-32 px-6 bg-[var(--card-bg)] border-y border-[var(--glass-border)]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 lg:mb-20">
+                <span class="text-brandGold font-bold uppercase tracking-[0.5em] text-xs">Our Expertise</span>
+                <h2 class="font-heading text-4xl lg:text-5xl font-black mt-4">PREMIUM <span class="text-gradient">SERVICES</span></h2>
+                <p class="text-[var(--text-muted)] mt-4 max-w-2xl mx-auto font-light">Comprehensive glazing solutions tailored to modern architectural demands.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="service-container">
+                <!-- Services injected via JS to keep HTML clean -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. GALLERY PAGE -->
+    <section id="gallery" class="py-24 lg:py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <span class="text-brandGold font-bold uppercase tracking-[0.5em] text-xs">Portfolio</span>
+                    <h2 class="font-heading text-4xl lg:text-5xl font-black mt-4">RECENT <span class="text-gradient">PROJECTS</span></h2>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                    <button class="px-6 py-2 rounded-full border border-brandGold text-brandGold text-xs uppercase tracking-wider font-bold hover:bg-brandGold hover:text-brandBlack transition-colors active">All Work</button>
+                    <button class="px-6 py-2 rounded-full border border-[var(--glass-border)] text-[var(--text-muted)] text-xs uppercase tracking-wider font-bold hover:border-brandGold transition-colors">Windows</button>
+                    <button class="px-6 py-2 rounded-full border border-[var(--glass-border)] text-[var(--text-muted)] text-xs uppercase tracking-wider font-bold hover:border-brandGold transition-colors">Doors</button>
+                </div>
+            </div>
+
+            <!-- CSS Columns for Masonry Grid -->
+            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6" id="gallery-container">
+                <!-- Images injected via JS -->
+            </div>
+
+            <!-- Before & After Section -->
+            <div class="mt-20 text-center">
+                <h3 class="font-heading font-black text-2xl mb-8">INTERACTIVE <span class="text-brandGold">TRANSFORMATIONS</span></h3>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="relative rounded-2xl overflow-hidden before-after-card cursor-ew-resize h-64 md:h-80 border border-[var(--glass-border)] shadow-xl">
+                        <img src="https://placehold.co/800x600/333333/aaaaaa?text=BEFORE:+Old+Drafty+Windows" class="absolute inset-0 w-full h-full object-cover">
+                        <img src="https://placehold.co/800x600/1a1a1a/d4af37?text=AFTER:+A-Rated+Black+uPVC" class="absolute inset-0 w-full h-full object-cover after-img z-10 border-r-4 border-brandGold">
+                        <div class="absolute bottom-4 left-4 z-20 bg-black/80 px-4 py-2 rounded text-xs text-white uppercase tracking-widest font-bold backdrop-blur-sm">Hover to Compare</div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden before-after-card cursor-ew-resize h-64 md:h-80 border border-[var(--glass-border)] shadow-xl">
+                        <img src="https://placehold.co/800x600/333333/aaaaaa?text=BEFORE:+Faded+Wooden+Door" class="absolute inset-0 w-full h-full object-cover">
+                        <img src="https://placehold.co/800x600/1a1a1a/d4af37?text=AFTER:+Secure+Composite+Door" class="absolute inset-0 w-full h-full object-cover after-img z-10 border-r-4 border-brandGold">
+                        <div class="absolute bottom-4 left-4 z-20 bg-black/80 px-4 py-2 rounded text-xs text-white uppercase tracking-widest font-bold backdrop-blur-sm">Hover to Compare</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. OFFERS PAGE -->
+    <section id="offers" class="py-24 px-6 relative overflow-hidden bg-[var(--card-bg)] border-y border-[var(--glass-border)]">
+        <div class="max-w-5xl mx-auto glass-card rounded-[3rem] p-8 lg:p-16 text-center relative overflow-hidden">
+            <!-- Decorative blurs -->
+            <div class="absolute -top-32 -left-32 w-72 h-72 bg-brandGold/10 blur-[100px] rounded-full"></div>
+            <div class="absolute -bottom-32 -right-32 w-72 h-72 bg-brandGold/10 blur-[100px] rounded-full"></div>
+            
+            <div class="relative z-10">
+                <div class="inline-block bg-red-600/20 text-red-500 font-bold px-4 py-1 rounded-full text-xs uppercase tracking-widest mb-6 animate-pulse border border-red-500/30">Limited Time Offer</div>
+                <h2 class="font-heading text-4xl lg:text-5xl font-black mb-4">VIP <span class="text-gradient">DISCOUNT</span></h2>
+                <p class="text-[var(--text-muted)] text-base sm:text-lg mb-2 uppercase tracking-widest font-bold">20% Off Property-Wide Installations</p>
+                <p class="text-brandGold text-sm mb-10 font-bold">Available for the First 10 Customers Only!</p>
+                
+                <!-- Countdown Timer -->
+                <div class="flex justify-center gap-4 sm:gap-6 mb-10">
+                    <div class="w-20 sm:w-28 py-4 sm:py-6 bg-[var(--bg-main)] border border-[var(--glass-border)] rounded-2xl shadow-inner">
+                        <div class="text-3xl sm:text-4xl font-heading font-black text-brandGold" id="timer-days">00</div>
+                        <div class="text-[9px] sm:text-[10px] text-[var(--text-muted)] uppercase font-bold mt-1">Days</div>
+                    </div>
+                    <div class="text-3xl font-black text-[var(--glass-border)] self-center">:</div>
+                    <div class="w-20 sm:w-28 py-4 sm:py-6 bg-[var(--bg-main)] border border-[var(--glass-border)] rounded-2xl shadow-inner">
+                        <div class="text-3xl sm:text-4xl font-heading font-black text-brandGold" id="timer-hours">00</div>
+                        <div class="text-[9px] sm:text-[10px] text-[var(--text-muted)] uppercase font-bold mt-1">Hours</div>
+                    </div>
+                    <div class="text-3xl font-black text-[var(--glass-border)] self-center">:</div>
+                    <div class="w-20 sm:w-28 py-4 sm:py-6 bg-[var(--bg-main)] border border-[var(--glass-border)] rounded-2xl shadow-inner">
+                        <div class="text-3xl sm:text-4xl font-heading font-black text-brandGold" id="timer-mins">00</div>
+                        <div class="text-[9px] sm:text-[10px] text-[var(--text-muted)] uppercase font-bold mt-1">Mins</div>
+                    </div>
+                </div>
+                
+                <a href="#booking" class="inline-block px-10 py-4 bg-brandGold text-brandBlack font-black rounded-full text-sm sm:text-base shadow-xl shadow-brandGold/20 hover:bg-white transition-all transform hover:-translate-y-1">CLAIM YOUR DISCOUNT</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. REVIEWS PAGE -->
+    <section id="reviews" class="py-24 lg:py-32 px-6">
+        <div class="max-w-7xl mx-auto relative">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <span class="text-brandGold font-bold uppercase tracking-[0.5em] text-xs">Testimonials</span>
+                    <h2 class="font-heading text-4xl lg:text-5xl font-black mt-4">CLIENT <span class="text-gradient">VOICES</span></h2>
+                    <div class="flex items-center gap-3 mt-4">
+                        <div class="flex text-brandGold text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <span class="text-sm text-[var(--text-muted)] font-bold">5.0 Google Average Rating</span>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <button class="review-prev w-12 h-12 border border-[var(--glass-border)] rounded-full flex items-center justify-center text-[var(--text-main)] hover:bg-brandGold hover:text-brandBlack hover:border-brandGold transition-all"><i class="fas fa-arrow-left"></i></button>
+                    <button class="review-next w-12 h-12 border border-[var(--glass-border)] rounded-full flex items-center justify-center text-[var(--text-main)] hover:bg-brandGold hover:text-brandBlack hover:border-brandGold transition-all"><i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Swiper Carousel -->
+            <div class="swiper review-swiper overflow-hidden rounded-3xl p-2">
+                <div class="swiper-wrapper" id="review-container">
+                    <!-- Reviews injected via JS -->
+                </div>
+                <div class="swiper-pagination !static mt-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. BOOKING PAGE -->
+    <section id="booking" class="py-24 lg:py-32 px-6 bg-[var(--card-bg)] border-t border-[var(--glass-border)]">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brandGold font-bold uppercase tracking-[0.5em] text-xs">Secure Your Survey</span>
+                <h2 class="font-heading text-4xl lg:text-5xl font-black mt-4">BOOK AN <span class="text-gradient">APPOINTMENT</span></h2>
+                <p class="text-[var(--text-muted)] mt-4 font-light">Submit your details below and Bunty will contact you directly within 24 hours.</p>
+            </div>
+
+            <form class="glass-card p-8 sm:p-12 rounded-[2.5rem] space-y-6 shadow-2xl relative" id="booking-form">
+                <!-- Decorative element -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-brandGold/5 rounded-bl-full -z-10 pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase text-[var(--text-muted)] font-bold ml-2">Full Name</label>
+                        <input type="text" required placeholder="John Doe" class="w-full bg-[var(--bg-main)] border border-[var(--glass-border)] text-[var(--text-main)] p-4 rounded-xl focus:border-brandGold focus:ring-1 focus:ring-brandGold outline-none transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase text-[var(--text-muted)] font-bold ml-2">Phone Number</label>
+                        <input type="tel" required placeholder="07xxx xxxxxx" class="w-full bg-[var(--bg-main)] border border-[var(--glass-border)] text-[var(--text-main)] p-4 rounded-xl focus:border-brandGold focus:ring-1 focus:ring-brandGold outline-none transition-all">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase text-[var(--text-muted)] font-bold ml-2">Email Address</label>
+                        <input type="email" required placeholder="john@example.com" class="w-full bg-[var(--bg-main)] border border-[var(--glass-border)] text-[var(--text-main)] p-4 rounded-xl focus:border-brandGold focus:ring-1 focus:ring-brandGold outline-none transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase text-[var(--text-muted)] font-bold ml-2">Site Address / Postcode</label>
+                        <input type="text" required placeholder="RM7 9QD" class="w-full bg-[var(--bg-main)] border border-[var(--glass-border)] text-[var(--text-main)] p-4 rounded-xl focus:border-brandGold focus:ring-1 focus:ring-brandGold outline-none transition-all">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase text-[var(--text-muted)] font-bold ml-2">Service Required</label>
+                        <div class="relative">
+                            <select class="w-full bg-[var(--bg-main)] border border-[var(--glass-border)] text-[var(--text-main)] p-4 rounded-xl focus:border-brandGold focus:ring-1 focus:ring-brandGold outline-none transition-all cursor-pointer appearance-none">
+                                <option>uPVC Windows Installation</option>
+                                <option>Composite Entrance Door</option>
+                                <option>Bi-Fold / Sliding Doors</option>
+                                <option>Glass Replacement / Misted Units</option>
+                                <option>Emergency Repair Service</option>
+                                <option>General Maintenance</option>
+                            </select>
+                            <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-brandGold pointer-events-none"></i>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase text-[var(--text-muted)] font-bold ml-2">Preferred Date</label>
+                        <input type="date" required class="w-full bg-[var(--bg-main)] border border-[var(--glass-border)] text-[var(--text-main)] p-4 rounded-xl focus:border-brandGold focus:ring-1 focus:ring-brandGold outline-none transition-all cursor-pointer">
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="text-[10px] uppercase text-[var(--text-muted)] font-bold ml-2">Message / Project Details</label>
+                    <textarea placeholder="Please describe your requirements briefly..." rows="4" class="w-full bg-[var(--bg-main)] border border-[var(--glass-border)] text-[var(--text-main)] p-4 rounded-xl focus:border-brandGold focus:ring-1 focus:ring-brandGold outline-none transition-all resize-none"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full py-5 bg-brandGold text-brandBlack font-black rounded-xl hover:bg-[#b5952f] transition-colors shadow-lg shadow-brandGold/20 mt-4 flex justify-center items-center gap-2 transform hover:-translate-y-1">
+                    <span>SUBMIT BOOKING REQUEST</span> <i class="fas fa-paper-plane text-sm"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 8. CONTACT PAGE -->
+    <section id="contact" class="py-24 px-6 border-t border-[var(--glass-border)]">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+            <div class="reveal-left">
+                <span class="text-brandGold font-bold uppercase tracking-[0.5em] text-xs">Reach Out</span>
+                <h2 class="font-heading text-4xl lg:text-5xl font-black mt-4 mb-8 leading-tight">CONTACT <span class="text-gradient">US</span></h2>
+                
+                <div class="space-y-8 mb-10">
+                    <div class="flex items-start gap-6 group">
+                        <div class="w-14 h-14 rounded-2xl bg-[var(--card-bg)] border border-[var(--glass-border)] flex items-center justify-center text-brandGold text-xl group-hover:bg-brandGold group-hover:text-brandBlack transition-all shadow-md"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <p class="text-[10px] uppercase text-[var(--text-muted)] font-bold tracking-widest mb-1">Headquarters</p>
+                            <p class="font-semibold text-[var(--text-main)] text-lg">83d London Road<br>Romford, RM7 9QD</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-6 group">
+                        <div class="w-14 h-14 rounded-2xl bg-[var(--card-bg)] border border-[var(--glass-border)] flex items-center justify-center text-brandGold text-xl group-hover:bg-brandGold group-hover:text-brandBlack transition-all shadow-md"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <p class="text-[10px] uppercase text-[var(--text-muted)] font-bold tracking-widest mb-1">Direct Lines</p>
+                            <a href="tel:07855058352" class="block font-semibold text-[var(--text-main)] text-lg hover:text-brandGold transition-colors">07855 058352</a>
+                            <a href="tel:07456189689" class="block font-semibold text-[var(--text-main)] text-lg hover:text-brandGold transition-colors">07456 189689</a>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-6 group">
+                        <div class="w-14 h-14 rounded-2xl bg-[var(--card-bg)] border border-[var(--glass-border)] flex items-center justify-center text-brandGold text-xl group-hover:bg-brandGold group-hover:text-brandBlack transition-all shadow-md"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <p class="text-[10px] uppercase text-[var(--text-muted)] font-bold tracking-widest mb-1">Email</p>
+                            <a href="mailto:Rcdoubleglazingltd@gmail.com" class="font-semibold text-[var(--text-main)] text-sm sm:text-base hover:text-brandGold transition-colors break-all">Rcdoubleglazingltd@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-6 group">
+                        <div class="w-14 h-14 rounded-2xl bg-[var(--card-bg)] border border-[var(--glass-border)] flex items-center justify-center text-brandGold text-xl group-hover:bg-brandGold group-hover:text-brandBlack transition-all shadow-md"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <p class="text-[10px] uppercase text-[var(--text-muted)] font-bold tracking-widest mb-1">Working Hours</p>
+                            <p class="font-semibold text-[var(--text-main)] text-base">Mon - Sat: 8:00 AM - 6:00 PM<br>Emergency Service: 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Map -->
+            <div class="reveal-right w-full h-[400px] lg:h-full min-h-[400px] rounded-[2.5rem] overflow-hidden border-2 border-[var(--glass-border)] shadow-2xl relative group">
+                <div class="absolute inset-0 bg-brandBlack/20 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+                <!-- Embedded Map centered on Romford -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.203362071853!2d0.1770020157723223!3d51.56447831435422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a4de997b8307%3A0xc6a8277eb0c7e2d9!2s83D%20London%20Rd%2C%20Romford%20RM7%209QD%2C%20UK!5e0!3m2!1sen!2sus!4v1650000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0; filter: grayscale(80%) contrast(120%);" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-6 bg-[var(--card-bg)] border-y border-[var(--glass-border)]">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-heading text-3xl lg:text-4xl font-black">FREQUENTLY ASKED <span class="text-gradient">QUESTIONS</span></h2>
+            </div>
+            <div class="space-y-4" id="faq-container">
+                <!-- FAQs injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="py-16 px-6 bg-[#050505] border-t border-brandGold/20 text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brandGold to-transparent opacity-50"></div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 border-2 border-brandGold flex items-center justify-center font-heading font-black text-brandGold rounded-sm">RC</div>
+                    <span class="font-heading font-black text-xl tracking-tighter">RIGHT CHOICE</span>
+                </div>
+                <p class="text-sm text-gray-400 font-light mb-6">Premium double glazing solutions, bespoke architectural glass, and emergency repairs for the modern London home. FENSA Accredited.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-[#111] border border-[#333] flex items-center justify-center text-brandGold hover:bg-brandGold hover:text-black transition-all"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-[#111] border border-[#333] flex items-center justify-center text-brandGold hover:bg-brandGold hover:text-black transition-all"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/447855058352" class="w-10 h-10 rounded-full bg-[#111] border border-[#333] flex items-center justify-center text-brandGold hover:bg-[#25D366] hover:text-white transition-all"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="font-heading font-bold text-lg mb-6 text-brandGold">Quick Links</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="#home" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> Home Page</a></li>
+                    <li><a href="#about" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> About Company</a></li>
+                    <li><a href="#gallery" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> Project Gallery</a></li>
+                    <li><a href="#reviews" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> Customer Reviews</a></li>
+                    <li><a href="#offers" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> Special Offers</a></li>
+                    <li><a href="#booking" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> Book Survey</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-heading font-bold text-lg mb-6 text-brandGold">Services</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="#services" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> uPVC Windows</a></li>
+                    <li><a href="#services" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> Composite Doors</a></li>
+                    <li><a href="#services" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> Bi-Fold Systems</a></li>
+                    <li><a href="#services" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> Glass Replacement</a></li>
+                    <li><a href="#services" class="hover:text-brandGold transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[10px]"></i> Emergency Repairs</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-heading font-bold text-lg mb-6 text-brandGold">Contact Info</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-map-marker-alt text-brandGold mt-1"></i>
+                        <span>83d London Road<br>Romford, RM7 9QD</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-phone-alt text-brandGold"></i>
+                        <a href="tel:07855058352" class="hover:text-brandGold transition-colors">07855 058352</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-phone-alt text-brandGold"></i>
+                        <a href="tel:07456189689" class="hover:text-brandGold transition-colors">07456 189689</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-brandGold"></i>
+                        <a href="mailto:Rcdoubleglazingltd@gmail.com" class="hover:text-brandGold transition-colors break-all">Rcdoubleglazingltd@gmail.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto pt-8 border-t border-[#222] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 uppercase tracking-widest font-bold">
+            <p>© 2024 Right Choice Double Glazing Ltd. Designed Professionally.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-brandGold transition-colors">Privacy Policy</a>
+                <span>|</span>
+                <a href="#" class="hover:text-brandGold transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+        <a href="tel:07855058352" class="w-14 h-14 bg-brandGold text-brandBlack rounded-full flex items-center justify-center text-xl shadow-lg shadow-brandGold/30 hover:scale-110 transition-transform"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/447855058352" class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center text-2xl shadow-lg shadow-green-500/30 hover:scale-110 transition-transform"><i class="fab fa-whatsapp"></i></a>
+        <button id="back-to-top" class="w-10 h-10 bg-[var(--card-bg)] border border-[var(--glass-border)] text-brandGold rounded-full flex items-center justify-center text-sm shadow-lg hover:bg-brandGold hover:text-black transition-all opacity-0 pointer-events-none translate-y-10"><i class="fas fa-arrow-up"></i></button>
+    </div>
+
+    <!-- Cookie Consent Popup -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-brandBlack text-white p-4 z-[100] transform translate-y-full transition-transform duration-500 border-t border-brandGold/30 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-light">
+            <p>We use cookies to ensure you get the best experience on our website, analyzing traffic to improve our luxury services. <a href="#" class="text-brandGold underline">Learn more</a></p>
+            <div class="flex gap-3 flex-shrink-0">
+                <button id="accept-cookies" class="px-6 py-2 bg-brandGold text-black font-bold rounded hover:bg-white transition-colors">Accept</button>
+                <button id="reject-cookies" class="px-6 py-2 border border-brandGold text-brandGold rounded hover:bg-brandGold/10 transition-colors">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // Data Objects for clean HTML injection
+        const services = [
+            { title: "uPVC Windows", icon: "fa-window-maximize", desc: "A-rated energy efficiency with multi-chamber profiles for superior thermal retention." },
+            { title: "Composite Doors", icon: "fa-door-closed", desc: "Ultra-secure GRP skins with insulating foam cores for ultimate protection and style." },
+            { title: "Sliding Systems", icon: "fa-grip-lines-vertical", desc: "Panoramic views using high-load bearing stainless steel tracks for smooth operation." },
+            { title: "Bi-Fold Doors", icon: "fa-columns", desc: "Seamless indoor-outdoor transitions with slimline architectural aluminium frames." },
+            { title: "Glass Replacement", icon: "fa-cubes", desc: "Remediation of misted units and failed seals, restoring clarity and insulation." },
+            { title: "Repairs & Maintenance", icon: "fa-tools", desc: "Proactive acoustic and security audits, hinge alignment, and mechanism fixing." },
+            { title: "Glazing Upgrades", icon: "fa-layer-group", desc: "Integration of solar-reflective and acoustic-dampening laminated structural glass." },
+            { title: "Emergency Service", icon: "fa-exclamation-triangle", desc: "Rapid response boarding and same-day glazing for security breaches." }
+        ];
+
+        const reviews = [
+            { name: "James Harrington", text: "Exceptional finish on our Romford Victorian home. The bi-folds are absolute masterpieces. Bunty's team were spotless.", rating: 5 },
+            { name: "Sarah Miller", text: "Reduced our heating bills by 30% after the full house uPVC upgrade. The black and gold detailing is stunning.", rating: 5 },
+            { name: "David Chen", text: "Professional, fast, and high-quality. The emergency repair was handled in under 3 hours on a Saturday.", rating: 5 },
+            { name: "Elena Rossi", text: "The composite door is solid and beautiful. Highly recommend Right Choice for luxury glazing.", rating: 5 },
+            { name: "Mark Thompson", text: "Replaced 8 misted windows. The process was entirely hassle-free and the price was transparent.", rating: 5 }
+        ];
+
+        const faqs = [
+            { q: "Are your windows and doors FENSA certified?", a: "Yes, Right Choice Double Glazing Ltd is fully FENSA registered. All our complete installations come with a certificate of compliance for building regulations." },
+            { q: "How long does a typical full-house installation take?", a: "A standard 3-bedroom semi-detached home typically takes our team 2 to 3 days to completely fit with new uPVC windows and doors, ensuring minimal disruption." },
+            { q: "Do you offer warranties on your products?", a: "Absolutely. We provide a comprehensive 10-year insurance-backed guarantee on frames and glass for new installations." },
+            { q: "Can you fix misted or blown double glazing units?", a: "Yes, we specialize in replacing just the glass panes within your existing frames, which is a highly cost-effective way to restore clarity and thermal efficiency." }
+        ];
+
+        const galleryImages = [
+            "https://placehold.co/600x800/1a1a1a/d4af37?text=Modern+Bi-Folds",
+            "https://placehold.co/600x400/0d0d0d/d4af37?text=Composite+Door",
+            "https://placehold.co/600x600/1a1a1a/d4af37?text=uPVC+Sash+Window",
+            "https://placehold.co/600x500/0d0d0d/d4af37?text=Conservatory+Glass",
+            "https://placehold.co/600x700/1a1a1a/d4af37?text=Sliding+Patio",
+            "https://placehold.co/600x450/0d0d0d/d4af37?text=Skylight+Installation"
+        ];
+
+        window.onload = () => {
+            renderContent();
+            initThreeJS();
+            initGSAP();
+            initSwiper();
+            initInteractions();
+            
+            // Premium Loading Screen Removal
+            setTimeout(() => {
+                const loader = document.getElementById('loading-screen');
+                loader.style.opacity = '0';
+                loader.style.transition = 'opacity 0.8s ease-out';
+                document.body.classList.remove('loader-active');
+                setTimeout(() => loader.remove(), 800);
+            }, 1500);
+
+            // Cookie logic delay
+            if(!localStorage.getItem('rc_cookies_accepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.remove('translate-y-full');
+                }, 4000);
+            }
+        };
+
+        function renderContent() {
+            // Render Service Cards
+            const sCont = document.getElementById('service-container');
+            services.forEach(s => {
+                sCont.innerHTML += `
+                    <div class="glass-card p-8 rounded-3xl group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brandGold/5 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500"></div>
+                        <div class="w-14 h-14 bg-[var(--bg-main)] border border-[var(--glass-border)] rounded-2xl flex items-center justify-center text-brandGold text-2xl mb-6 shadow-sm group-hover:bg-brandGold group-hover:text-black transition-colors">
+                            <i class="fas ${s.icon}"></i>
+                        </div>
+                        <h3 class="font-heading font-black text-xl mb-3 text-[var(--text-main)]">${s.title}</h3>
+                        <p class="text-sm text-[var(--text-muted)] leading-relaxed mb-6 font-light">${s.desc}</p>
+                        <a href="#booking" class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-brandGold group-hover:text-[var(--text-main)] transition-colors">
+                            Pricing <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                `;
+            });
+
+            // Render Gallery
+            const gCont = document.getElementById('gallery-container');
+            galleryImages.forEach(img => {
+                gCont.innerHTML += `
+                    <div class="gallery-item rounded-2xl overflow-hidden group relative cursor-zoom-in border border-[var(--glass-border)] shadow-md">
+                        <img src="${img}" class="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700" alt="Gallery Work">
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-brandGold text-3xl"></i>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Render Reviews
+            const rCont = document.getElementById('review-container');
+            reviews.forEach(r => {
+                rCont.innerHTML += `
+                    <div class="swiper-slide h-auto">
+                        <div class="glass-card p-8 sm:p-10 rounded-[2.5rem] h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex gap-1 text-brandGold mb-6 text-sm">
+                                    ${'<i class="fas fa-star"></i>'.repeat(r.rating)}
+                                </div>
+                                <p class="text-base sm:text-lg font-light leading-relaxed mb-8 italic text-[var(--text-main)]">"${r.text}"</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-brandGold/20 flex items-center justify-center text-brandGold font-bold text-lg">${r.name.charAt(0)}</div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-[var(--text-main)] text-sm">${r.name}</h4>
+                                    <p class="text-[9px] uppercase text-[var(--text-muted)] tracking-widest font-bold">Verified Customer <i class="fas fa-check-circle text-green-500 ml-1"></i></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Render FAQs
+            const fCont = document.getElementById('faq-container');
+            faqs.forEach((f, i) => {
+                fCont.innerHTML += `
+                    <div class="faq-item glass-card rounded-2xl cursor-pointer">
+                        <div class="p-5 sm:p-6 flex justify-between items-center" onclick="this.parentElement.classList.toggle('active')">
+                            <h4 class="font-heading font-bold text-[var(--text-main)] pr-4">${f.q}</h4>
+                            <div class="faq-icon text-brandGold transition-transform duration-300"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer px-5 sm:px-6">
+                            <p class="text-[var(--text-muted)] font-light pb-6 text-sm">${f.a}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function initThreeJS() {
+            const cont = document.getElementById('three-canvas');
+            if(!cont) return;
+            
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, cont.clientWidth / cont.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(cont.clientWidth, cont.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            cont.appendChild(renderer.domElement);
+
+            // Premium Materials
+            const darkFrameMat = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.1, metalness: 0.9 });
+            const goldHandleMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, roughness: 0.1, metalness: 1 });
+            const glassMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 0.9, opacity: 1, transparent: true, roughness: 0, ior: 1.5, thickness: 0.5 });
+
+            const windowGroup = new THREE.Group();
+
+            // Constructing 3D Window Frame
+            const topBar = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.2, 0.4), darkFrameMat);
+            topBar.position.y = 3;
+            const bottomBar = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.2, 0.4), darkFrameMat);
+            bottomBar.position.y = -3;
+            const leftBar = new THREE.Mesh(new THREE.BoxGeometry(0.2, 5.8, 0.4), darkFrameMat);
+            leftBar.position.x = -2;
+            const rightBar = new THREE.Mesh(new THREE.BoxGeometry(0.2, 5.8, 0.4), darkFrameMat);
+            rightBar.position.x = 2;
+            const midBar = new THREE.Mesh(new THREE.BoxGeometry(0.2, 5.8, 0.3), darkFrameMat);
+            
+            // Glass Panes
+            const glass1 = new THREE.Mesh(new THREE.BoxGeometry(1.8, 5.7, 0.05), glassMat);
+            glass1.position.set(-1, 0, 0);
+            const glass2 = new THREE.Mesh(new THREE.BoxGeometry(1.8, 5.7, 0.05), glassMat);
+            glass2.position.set(1, 0, 0);
+
+            // Handle Assembly
+            const handleBase = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.4, 0.05), goldHandleMat);
+            handleBase.position.set(0.1, 0, 0.2);
+            const handleGrip = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.3), goldHandleMat);
+            handleGrip.position.set(0.2, -0.1, 0.25);
+            handleGrip.rotation.z = Math.PI / 2;
+            
+            const openerGroup = new THREE.Group();
+            openerGroup.add(midBar, handleBase, handleGrip);
+            openerGroup.position.set(0,0,0.05);
+
+            windowGroup.add(topBar, bottomBar, leftBar, rightBar, glass1, glass2, openerGroup);
+            scene.add(windowGroup);
+
+            // Lighting for Luxury Effect
+            const light1 = new THREE.DirectionalLight(0xd4af37, 2);
+            light1.position.set(5, 5, 5);
+            scene.add(light1);
+            
+            const light2 = new THREE.DirectionalLight(0xffffff, 1);
+            light2.position.set(-5, 0, -5);
+            scene.add(light2);
+            
+            scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+
+            camera.position.z = 8;
+            camera.position.y = 0.5;
+
+            // Interactive Drag Logic
+            let isDragging = false, prevX = 0, prevY = 0;
+            
+            const startDrag = (e) => {
+                isDragging = true;
+                prevX = e.touches ? e.touches[0].clientX : e.clientX;
+                prevY = e.touches ? e.touches[0].clientY : e.clientY;
+            };
+            const stopDrag = () => isDragging = false;
+            const doDrag = (e) => {
+                if(!isDragging) return;
+                const x = e.touches ? e.touches[0].clientX : e.clientX;
+                const y = e.touches ? e.touches[0].clientY : e.clientY;
+                windowGroup.rotation.y += (x - prevX) * 0.01;
+                windowGroup.rotation.x += (y - prevY) * 0.01;
+                prevX = x; prevY = y;
+            };
+
+            cont.addEventListener('mousedown', startDrag);
+            window.addEventListener('mouseup', stopDrag);
+            window.addEventListener('mousemove', doDrag);
+            
+            cont.addEventListener('touchstart', startDrag, {passive: true});
+            window.addEventListener('touchend', stopDrag);
+            window.addEventListener('touchmove', doDrag, {passive: true});
+
+            // Resize handling
+            window.addEventListener('resize', () => {
+                camera.aspect = cont.clientWidth / cont.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(cont.clientWidth, cont.clientHeight);
+            });
+
+            // Animation Loop
+            function animate() {
+                requestAnimationFrame(animate);
+                if(!isDragging) {
+                    windowGroup.rotation.y += 0.003;
+                    windowGroup.position.y = Math.sin(Date.now() * 0.001) * 0.1; // Gentle float
+                }
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+
+        function initGSAP() {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Top Progress Bar
+            gsap.to("#progress-bar", {
+                width: "100%",
+                ease: "none",
+                scrollTrigger: { scrub: 0.3 }
+            });
+
+            // Slide In Effects
+            document.querySelectorAll('.reveal-left').forEach(el => {
+                gsap.from(el, { x: -50, opacity: 0, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } });
+            });
+            
+            document.querySelectorAll('.reveal-right').forEach(el => {
+                gsap.from(el, { x: 50, opacity: 0, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } });
+            });
+
+            // Animated Counters
+            document.querySelectorAll('.count').forEach(c => {
+                const target = +c.dataset.val;
+                gsap.to(c, {
+                    innerText: target, duration: 2.5, ease: "power2.out",
+                    snap: { innerText: 1 },
+                    scrollTrigger: { trigger: c, start: "top 90%" }
+                });
+            });
+
+            // Stagger Services Grid
+            gsap.from("#service-container > div", {
+                y: 50, opacity: 0, duration: 0.8, stagger: 0.1, ease: "back.out(1.7)",
+                scrollTrigger: { trigger: "#service-container", start: "top 80%" }
+            });
+            
+            // Stagger Gallery Masonry
+            gsap.from("#gallery-container > div", {
+                scale: 0.9, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power2.out",
+                scrollTrigger: { trigger: "#gallery-container", start: "top 80%" }
+            });
+        }
+
+        function initSwiper() {
+            new Swiper('.review-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: { delay: 4000, disableOnInteraction: false },
+                pagination: { el: '.swiper-pagination', clickable: true },
+                navigation: { nextEl: '.review-next', prevEl: '.review-prev' },
+                breakpoints: { 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 30 } }
+            });
+        }
+
+        function initInteractions() {
+            // Mobile Menu Toggle
+            const menu = document.getElementById('mobile-menu');
+            document.getElementById('nav-toggle').onclick = () => menu.classList.remove('translate-x-full');
+            document.getElementById('close-menu').onclick = () => menu.classList.add('translate-x-full');
+            document.querySelectorAll('.mobile-link').forEach(l => l.onclick = () => menu.classList.add('translate-x-full'));
+
+            // Dark/Light Theme Logic
+            const body = document.body;
+            const toggleBtns = [document.getElementById('theme-toggle-btn'), document.getElementById('theme-toggle-mobile')];
+            
+            const updateThemeIcon = () => {
+                const isDark = body.classList.contains('dark');
+                toggleBtns.forEach(btn => {
+                    if(btn) btn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                });
+            };
+            
+            toggleBtns.forEach(btn => {
+                if(btn) btn.onclick = () => {
+                    body.classList.toggle('dark');
+                    updateThemeIcon();
+                };
+            });
+            updateThemeIcon();
+
+            // Offers Countdown Timer
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 3); // Dynamic 3 days
+            
+            setInterval(() => {
+                const now = new Date();
+                const diff = targetDate - now;
+                if(diff > 0) {
+                    document.getElementById('timer-days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                    document.getElementById('timer-hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
+                    document.getElementById('timer-mins').innerText = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
+                }
+            }, 1000);
+
+            // Back to Top Button Logic
+            const btt = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if(window.scrollY > 600) {
+                    btt.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+                } else {
+                    btt.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
+                }
+            });
+            btt.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+
+            // Booking Form Submission
+            document.getElementById('booking-form').onsubmit = (e) => {
+                e.preventDefault();
+                const btn = e.target.querySelector('button[type="submit"]');
+                const origHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                btn.disabled = true;
+                
+                // Mock API Delay
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Request Sent Successfully';
+                    btn.classList.add('bg-green-500', 'text-white');
+                    e.target.reset();
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = origHtml;
+                        btn.classList.remove('bg-green-500', 'text-white');
+                        btn.disabled = false;
+                    }, 4000);
+                }, 1500);
+            };
+
+            // Cookie Actions
+            document.getElementById('accept-cookies').onclick = () => {
+                localStorage.setItem('rc_cookies_accepted', 'true');
+                document.getElementById('cookie-banner').classList.add('translate-y-full');
+            };
+            document.getElementById('reject-cookies').onclick = () => {
+                document.getElementById('cookie-banner').classList.add('translate-y-full');
+            };
+        }
+    </script>
+</body>
+</html>
